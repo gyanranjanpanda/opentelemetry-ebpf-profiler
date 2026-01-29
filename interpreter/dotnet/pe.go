@@ -331,8 +331,10 @@ func (pp *peParser) parsePE() error {
 	// Ready to Run code has been generated.
 	switch pp.nt.Machine {
 	case pe.IMAGE_FILE_MACHINE_AMD64,
+		pe.IMAGE_FILE_MACHINE_ARM64,
 		pe.IMAGE_FILE_MACHINE_I386, // According to ECMA spec always this
-		0xfd1d:                     // Seen on dotnet internal .dlls
+		0xfd1d,                     // Seen on dotnet internal .dlls
+		0xd11d:                     // Seen on dotnet internal .dlls (arm64?)
 		// ok
 	default:
 		return fmt.Errorf("unrecognized PE machine: %#x", pp.nt.Machine)

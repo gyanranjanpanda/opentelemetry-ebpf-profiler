@@ -168,12 +168,7 @@ func Parse(tracers string) (IncludedTracers, error) {
 		}
 	}
 
-	if runtime.GOARCH == "arm64" {
-		if result.Has(DotnetTracer) {
-			result.Disable(DotnetTracer)
-			log.Warn("The dotnet tracer is currently not supported on ARM64")
-		}
-	}
+
 
 	if tracersEnabled := result.String(); tracersEnabled != "" {
 		log.Debugf("Tracer string: %v", tracers)
